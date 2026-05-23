@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Suhel — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #111418;
+    --bg3: #181d24;
+    --gold: #c9a84c;
+    --gold2: #e8c97e;
+    --teal: #2dd4bf;
+    --text: #e8e4dc;
+    --muted: #7a8090;
+    --border: rgba(201,168,76,0.18);
+    --card: rgba(24,29,36,0.85);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,12,15,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 65% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(45,212,191,0.05) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  h1.hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  h1.hero-name span {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-role {
+    margin-top: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-role strong {
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .hero-desc {
+    margin-top: 1.8rem;
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #0a0c0f;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  .hero-divider {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    opacity: 0.9;
+    animation: fadeIn 1.2s 0.6s ease both;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 3.5rem;
+    max-width: 520px;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding: 1.8rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .tl-item:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateX(4px);
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -2.55rem;
+    top: 2rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+
+  .tl-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .tl-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tl-period {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.07);
+    white-space: nowrap;
+  }
+
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .tl-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .tl-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .tl-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.7rem;
+    top: 0.18em;
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 100%;
+    padding: 6rem 4rem;
+  }
+
+  #skills > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  #skills .section-label, #skills .section-title, #skills .section-sub { max-width: 1200px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .skill-card:hover::after { transform: scaleX(1); }
+  .skill-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+
+  .skill-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .skill-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .proj-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proj-card:hover {
+    border-color: rgba(45,212,191,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .proj-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--teal);
+    background: rgba(45,212,191,0.08);
+    border: 1px solid rgba(45,212,191,0.2);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .proj-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .proj-org {
+    font-size: 0.8rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .proj-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+  }
+
+  .cert-row:hover {
+    border-color: rgba(201,168,76,0.3);
+    transform: translateX(6px);
+  }
+
+  .cert-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .cert-name { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+  .cert-ref { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    transition: all 0.3s;
+  }
+
+  .edu-card:hover { border-color: rgba(201,168,76,0.3); }
+
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); }
+  .edu-inst { font-size: 0.9rem; color: var(--teal); margin-top: 0.3rem; }
+  .edu-score { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+  .edu-period { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+  /* ── LANGUAGES ── */
+  .lang-pills {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .lang-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.6rem 1.6rem;
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+  }
+
+  .lang-pill:hover { border-color: var(--gold); color: var(--gold); }
+  .lang-pill span { font-size: 1.1rem; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg2);
+    max-width: 100%;
+    border-top: 1px solid var(--border);
+    padding: 6rem 4rem;
+  }
+
+  #contact > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+
+  .contact-item:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+  .contact-ico {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .contact-val { font-size: 0.95rem; color: var(--text); font-weight: 500; margin-top: 0.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-divider { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #skills, #contact { padding: 4rem 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Decorative SVG element */
+  .deco-svg {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px;
+    height: 340px;
+    opacity: 0.55;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M. Suhel</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Decorative geometric SVG -->
+  <svg class="deco-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.2"/>
+      </linearGradient>
+    </defs>
+    <circle cx="170" cy="170" r="155" fill="none" stroke="url(#g1)" stroke-width="1"/>
+    <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="0.5" stroke-dasharray="6 4"/>
+    <circle cx="170" cy="170" r="85" fill="none" stroke="rgba(45,212,191,0.12)" stroke-width="1"/>
+    <polygon points="170,30 300,240 40,240" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+    <polygon points="170,310 40,100 300,100" fill="none" stroke="rgba(45,212,191,0.15)" stroke-width="0.8"/>
+    <circle cx="170" cy="170" r="8" fill="rgba(201,168,76,0.5)"/>
+    <line x1="170" y1="15" x2="170" y2="45" stroke="rgba(201,168,76,0.5)" stroke-width="1.5"/>
+    <line x1="170" y1="295" x2="170" y2="325" stroke="rgba(201,168,76,0.5)" stroke-width="1.5"/>
+    <line x1="15" y1="170" x2="45" y2="170" stroke="rgba(45,212,191,0.5)" stroke-width="1.5"/>
+    <line x1="295" y1="170" x2="325" y2="170" stroke="rgba(45,212,191,0.5)" stroke-width="1.5"/>
+    <!-- pipeline symbol -->
+    <rect x="140" y="163" width="60" height="14" rx="7" fill="none" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+    <rect x="130" y="160" width="12" height="20" rx="4" fill="none" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+    <rect x="198" y="160" width="12" height="20" rx="4" fill="none" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Available for New Opportunities</div>
+    <h1 class="hero-name">Mohamed<br/><span>Suhel</span></h1>
+    <p class="hero-role">
+      Lead Project Coordinator &amp; <strong>QHSE Specialist</strong><br/>
+      Pipeline &amp; Energy Sector | Qatar &amp; GCC
+    </p>
+    <p class="hero-desc">
+      Mechanical engineer with 8+ years across QHSE, project coordination, and offshore pipeline operations. Proven record of delivering zero-incident projects and measurable operational improvements in Qatar and Abu Dhabi.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Lost-Time Injuries</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Major Projects</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Career History</p>
+  <h2 class="section-title reveal">Work Experience</h2>
+  <p class="section-sub reveal">A decade of delivering excellence across energy, QHSE, and operations management in the GCC region.</p>
+
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <div>
+          <div class="tl-company">OAG Middle East LLC · Qatar</div>
+          <div class="tl-title">Lead Project Coordinator</div>
+        </div>
+        <div class="tl-period">Sep 2024 – Present</div>
+      </div>
+      <ul class="tl-bullets">
+        <li>Directed onshore pipeline field joint coating operations with 100% QHSE compliance by supervising FJC processes and enforcing safety protocols.</li>
+        <li>Coordinated with clients, subcontractors, and site teams, cutting schedule delays by 15% through proactive planning and material tracking.</li>
+        <li>Managed project schedules, equipment mobilization, and vendor coordination for on-time milestone completion.</li>
+        <li>Supported QA/QC inspections and documentation, increasing audit readiness and approval rates by 20%.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <div>
+          <div class="tl-company">Family Business · Chennai</div>
+          <div class="tl-title">Pharmacy Manager</div>
+        </div>
+        <div class="tl-period">Apr 2022 – Aug 2024</div>
+      </div>
+      <ul class="tl-bullets">
+        <li>Oversaw daily operations of a high-volume community pharmacy, improving customer satisfaction by 30% through process optimization.</li>
+        <li>Managed procurement, vendor negotiations, and inventory tracking, reducing stock-out incidents by 25%.</li>
+        <li>Implemented digital billing and reporting systems that increased transaction efficiency by 40%.</li>
+        <li>Supervised pharmacists and assistants, providing compliance training in medical and safety regulations.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">
+        <div>
+          <div class="tl-company">OAG International Pipeline Service Ltd · Abu Dhabi</div>
+          <div class="tl-title">QHSE Representative</div>
+        </div>
+        <div class="tl-period">Apr 2018 – Mar 2022</div>
+      </div>
+      <ul class="tl-bullets">
+        <li>Implemented QHSE Management Systems ensuring ISO and UAE regulatory compliance — improved audit pass rates by 20%.</li>
+        <li>Conducted toolbox talks, safety inductions, and risk assessments, reducing workplace incidents by 35%.</li>
+        <li>Led incident investigations and corrective action planning — achieved zero lost-time injuries (LTI) for two consecutive years.</li>
+        <li>Negotiated with local and international vendors achieving 8–12% cost savings on procurement.</li>
+        <li>Developed monthly maintenance plans improving equipment uptime by 15% through preventive measures.</li>
+        <li>Streamlined inventory control and material mobilization, reducing project delays by 10%.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:6rem 4rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">Key Deployments</p>
+    <h2 class="section-title reveal">Projects</h2>
+    <p class="section-sub reveal">Offshore and onshore pipeline projects across Qatar and Abu Dhabi for major energy clients.</p>
+    <div class="projects-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-tag">Ongoing</div>
+        <div class="proj-title">North Field Expansion (NFXP)</div>
+        <div class="proj-org">OAG Middle East LLC</div>
+        <div class="proj-period">Jan 2025 – Present · Qatar</div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-tag">Upcoming</div>
+        <div class="proj-title">Idd El Shargi North Dome</div>
+        <div class="proj-org">OAG Middle East LLC</div>
+        <div class="proj-period">Jun 2025 – Aug 2025 · Qatar</div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-tag">Completed</div>
+        <div class="proj-title">R-Series 5 Well Platform &amp; Pipeline</div>
+        <div class="proj-org">OAG International Pipeline Service Ltd</div>
+        <div class="proj-period">Abu Dhabi · HDPUF Specialist – FJC Provision</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg);max-width:100%;padding:6rem 4rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">Capabilities</p>
+    <h2 class="section-title reveal">Technical Skills</h2>
+    <p class="section-sub reveal">Specialized competencies built across QHSE, project management, procurement, and engineering domains.</p>
+
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🛡️</div>
+        <div class="skill-name">QHSE Management Systems</div>
+        <div class="skill-desc">ISO 9001, ISO 14001, OHSAS 18001 / ISO 45001 implementation and maintenance.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚠️</div>
+        <div class="skill-name">Risk Assessment & Hazard ID</div>
+        <div class="skill-desc">HIRA, JSA, and PTW processes across high-risk offshore and onshore environments.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔍</div>
+        <div class="skill-name">Incident Investigation & RCA</div>
+        <div class="skill-desc">Root Cause Analysis, corrective action planning, and zero-LTI track record.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Maintenance Planning</div>
+        <div class="skill-desc">Preventive and corrective maintenance, equipment calibration, and asset management.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">📦</div>
+        <div class="skill-name">Procurement & Vendor Negotiation</div>
+        <div class="skill-desc">Local and international vendor management with 8–12% cost savings achieved.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🚢</div>
+        <div class="skill-name">Supply Chain & Logistics</div>
+        <div class="skill-desc">Import/export coordination, customs clearance, and mobilization planning.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Project Scheduling</div>
+        <div class="skill-desc">MS Project, Excel-based tracking, milestone management, and stakeholder reporting.</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">MS Office Suite</div>
+        <div class="skill-desc">Word, Excel, PowerPoint, and Outlook — reports, dashboards, and documentation.</div>
+      </div>
+
+    </div>
+
+    <!-- Soft Skills -->
+    <p class="section-label reveal" style="margin-top:3.5rem;">Personal Strengths</p>
+    <div class="lang-pills" style="margin-top:1rem;">
+      <div class="lang-pill reveal"><span>🎯</span> Leadership &amp; Team Supervision</div>
+      <div class="lang-pill reveal"><span>🗣️</span> Communication &amp; Stakeholder Mgmt</div>
+      <div class="lang-pill reveal"><span>⚡</span> Adaptability &amp; Problem-Solving</div>
+      <div class="lang-pill reveal"><span>⏱️</span> Multitasking &amp; Time Management</div>
+      <div class="lang-pill reveal"><span>💪</span> Works Well Under Pressure</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label reveal">Academic Background</p>
+  <h2 class="section-title reveal">Education</h2>
+  <p class="section-sub reveal">Engineering foundation from one of India's premier technical universities.</p>
+
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-degree">Bachelor of Technology — Mechanical Engineering</div>
+      <div class="edu-inst">SRM University, Chennai</div>
+      <div class="edu-score">CGPA: 7.250</div>
+    </div>
+    <div class="edu-period">Jun 2013 – May 2017</div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-degree">Grade 12 — Higher Secondary</div>
+      <div class="edu-inst">Velammal Matriculation, Chennai</div>
+      <div class="edu-score">Score: 82.25%</div>
+    </div>
+    <div class="edu-period">Jun 2012 – Apr 2013</div>
+  </div>
+
+  <!-- Certifications -->
+  <p class="section-label reveal" style="margin-top:3.5rem;">Certifications</p>
+  <div style="margin-top:1.5rem;">
+    <div class="cert-row reveal">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">NEBOSH International General Certificate in Occupational Health &amp; Safety</div>
+        <div class="cert-ref">Ref: 00535043/1193083</div>
+      </div>
+    </div>
+    <div class="cert-row reveal">
+      <div class="cert-icon">💾</div>
+      <div>
+        <div class="cert-name">SAP — System Application Product (Material Management)</div>
+        <div class="cert-ref">Info Skills Certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section style="padding-top:0;padding-bottom:6rem;">
+  <p class="section-label reveal">Multilingual</p>
+  <h2 class="section-title reveal">Languages</h2>
+  <div class="lang-pills">
+    <div class="lang-pill reveal"><span>🇬🇧</span> English</div>
+    <div class="lang-pill reveal"><span>🇮🇳</span> Tamil</div>
+    <div class="lang-pill reveal"><span>🌙</span> Urdu</div>
+    <div class="lang-pill reveal"><span>🇮🇳</span> Hindi</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg2);max-width:100%;border-top:1px solid var(--border);padding:6rem 4rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Contact</h2>
+    <p class="section-sub reveal">Open to new project opportunities across Qatar, UAE, and the broader GCC region.</p>
+    <div class="contact-grid reveal">
+      <a class="contact-item" href="tel:+918189958161">
+        <div class="contact-ico">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">+91 81899 58161</div>
+        </div>
+      </a>
+      <a class="contact-item" href="mailto:suhelmohamed863@gmail.com">
+        <div class="contact-ico">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">suhelmohamed863@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/mohamedsuhel" target="_blank">
+        <div class="contact-ico">🔗</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">linkedin.com/in/mohamedsuhel</div>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-ico">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Chennai, Tamil Nadu, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Mohamed Suhel &nbsp;·&nbsp; Lead Project Coordinator &amp; QHSE Specialist &nbsp;·&nbsp; Chennai, India
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
